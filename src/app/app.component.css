@@ -1,0 +1,23 @@
+.page { max-width: 900px; padding: 3rem 1rem; margin: auto; }
+header { margin-bottom: 2rem; }
+h1 { margin: .25rem 0; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; }
+h2 { font-size: 1.25rem; margin: 0 0 1rem; }
+.eyebrow { color: #205ac8; font-weight: 800; letter-spacing: .15em; }
+.card { background: white; border: 1px solid #dfe5ef; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; }
+label { display: block; font-weight: 600; margin-bottom: .5rem; }
+.form-row, .section-header { display: flex; gap: .75rem; align-items: center; }
+.form-row input { flex: 1; min-width: 0; padding: .8rem; border: 1px solid #aeb9ca; border-radius: .5rem; }
+button { background: #205ac8; color: white; border: 1px solid #205ac8; border-radius: .5rem; padding: .8rem 1rem; cursor: pointer; font-weight: 600; }
+button:disabled { opacity: .6; cursor: not-allowed; }
+.secondary { background: white; color: #205ac8; padding: .4rem .8rem; }
+.section-header { justify-content: space-between; }
+.section-header h2 { margin: 0; }
+.muted { color: #526179; }
+.error { color: #a12121; }
+.success { padding: .75rem; background: #effaf2; border-radius: .5rem; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; text-align: left; }
+th, td { padding: .75rem .5rem; border-bottom: 1px solid #e1e6ee; vertical-align: top; }
+.original { overflow-wrap: anywhere; max-width: 30rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 600px) { .form-row { align-items: stretch; flex-direction: column; } .page { padding-top: 2rem; } }

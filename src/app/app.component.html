@@ -1,0 +1,51 @@
+<main class="page">
+  <header>
+    <p class="eyebrow">SNIP</p>
+    <h1>Make a long link short.</h1>
+    <p>Keep your links simple and see how often they are visited.</p>
+  </header>
+
+  <section class="card" aria-labelledby="form-title">
+    <h2 id="form-title">Shorten a link</h2>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <label for="url">Original URL</label>
+      <div class="form-row">
+        <input id="url" type="url" formControlName="url" autocomplete="url"
+          placeholder="https://example.com" [attr.aria-invalid]="showFieldError()"
+          aria-describedby="url-help url-error">
+        <button type="submit" [disabled]="submitting()">{{ submitting() ? 'Shortening...' : 'Shorten URL' }}</button>
+      </div>
+      <p id="url-help" class="muted">Enter a full HTTP or HTTPS address.</p>
+      <p id="url-error" class="error" aria-live="polite">{{ fieldError() }}</p>
+    </form>
+    @if (createdLink(); as link) {
+      <p class="success" role="status">Your short link: <a [href]="link.shortUrl">{{ link.shortUrl }}</a></p>
+    }
+  </section>
+
+  <section class="card" aria-labelledby="links-title">
+    <div class="section-header">
+      <h2 id="links-title">Your links</h2>
+      <button class="secondary" type="button" (click)="loadLinks()" [disabled]="loading()">Refresh</button>
+    </div>
+    @if (loading()) {
+      <p role="status">Loading links...</p>
+    } @else if (listError()) {
+      <p class="error" role="alert">{{ listError() }}</p>
+    } @else if (links().length === 0) {
+      <p class="muted">No links yet. Create one above to get started.</p>
+    } @else {
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">Shortened links and visit counts</caption>
+          <thead><tr><th scope="col">Short link</th><th scope="col">Original URL</th><th scope="col">Hits</th></tr></thead>
+          <tbody>
+            @for (link of links(); track link.code) {
+              <tr><td><a [href]="link.shortUrl">{{ link.code }}</a></td><td class="original">{{ link.url }}</td><td>{{ link.hits }}</td></tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+</main>
